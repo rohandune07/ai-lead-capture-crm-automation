@@ -55,6 +55,5 @@ Use `.env.example` to configure your environment.
 
 ## 👨‍💻 Author
 Rohan Dune
-📧 Email: dunerohan1719@email.com  
-🔗 LinkedIn: https://www.linkedin.com/in/rohan-dune/
+📧 Email: dunerohan1719@email.com 
 💼 Open to freelance automation & AI workflow projects
