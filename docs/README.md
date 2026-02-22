@@ -14,7 +14,11 @@ This workflow:
 
 ## 🏗 Architecture Flow
 
-Webhook → n8n → OpenAI → Airtable → CRM
+Lead Capture:
+Webhook → n8n → Airtable → AI Processing → Notification → CRM
+
+Follow-Up Automation:
+Schedule Trigger → Airtable → Condition Check → Email → CRM Update
 
 ---
 
