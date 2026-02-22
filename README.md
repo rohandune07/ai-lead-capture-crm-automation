@@ -47,16 +47,17 @@ Schedule Trigger → Airtable → Condition Check → Email Reminder → CRM Upd
 ```
 ai-lead-capture-crm-automation/
 │
-├── workflows/
-│   ├── ai-lead-capture-system.json
+├── workflow/
+│   ├── ai-lead-capture-workflow.json
 │   └── follow-up-reminder-system.json
 │
 ├── docs/
-│   ├── lead-capture-workflow.png
-│   ├── follow-up-workflow.png
+│   ├── AI Leads CRM Airtable.png
+│   ├── Lead Capture Workflow.png
+│   └── Follow-Up Reminder Workflow.png
 │
 ├── .env.example
-├── README.md
+└── README.md
 ```
 
 ---
@@ -77,17 +78,20 @@ ai-lead-capture-crm-automation/
 ## 📸 Workflow Screenshots
 
 ### AI Lead Capture Workflow
-![Lead Capture Workflow](docs/lead-capture-workflow.png)
+![Lead Capture Workflow](docs/Lead Capture Workflow.png)
 
 ### Follow-Up Reminder Workflow
-![Follow-Up Workflow](docs/follow-up-workflow.png)
+![Follow-Up Workflow](docs/Follow-Up Reminder Workflow.png)
+
+### Airtable CRM View
+![Airtable CRM](docs/AI Leads CRM Airtable.png)
 
 ---
 
 ## 🛠 Setup Instructions
 
 1. Clone this repository
-2. Import workflow JSON files into n8n
+2. Import workflow JSON files from the `workflow/` folder into n8n
 3. Add your credentials in n8n:
    - OpenAI API Key
    - Airtable API Key
@@ -102,9 +106,9 @@ ai-lead-capture-crm-automation/
 - API keys are NOT included.
 - Production webhook URLs are NOT included.
 - Use `.env.example` as a reference for configuration.
+- Always regenerate credentials before production use.
 
 ---
-
 
 ## 👨‍💻 About the Developer
 
