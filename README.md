@@ -75,17 +75,16 @@ ai-lead-capture-crm-automation/
 
 ---
 
-## 📸 Workflow Screenshots
+#### 📸 Workflow Screenshots
 
 ### AI Lead Capture Workflow
-![Lead Capture Workflow](docs/Lead Capture Workflow.png)
+![Lead Capture Workflow](docs/lead-capture-workflow.png)
 
 ### Follow-Up Reminder Workflow
-![Follow-Up Workflow](docs/Follow-Up Reminder Workflow.png)
+![Follow-Up Workflow](docs/follow-up-reminder-workflow.png)
 
 ### Airtable CRM View
-![Airtable CRM](docs/AI Leads CRM Airtable.png)
-
+![Airtable CRM](docs/airtable-crm-view.png)
 ---
 
 ## 🛠 Setup Instructions
