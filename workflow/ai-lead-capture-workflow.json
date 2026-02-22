@@ -1,0 +1,861 @@
+{
+  "name": "AI Lead Capture System",
+  "nodes": [
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "1d79a6c0-ed3d-4839-a00e-390614a8e559",
+              "name": "name",
+              "value": "={{$json.body.name}}",
+              "type": "string"
+            },
+            {
+              "id": "9797ece0-e6af-4e57-b4f2-6e3c40006b23",
+              "name": "=email",
+              "value": "={{$json.body.email}}",
+              "type": "string"
+            },
+            {
+              "id": "c8abc8fb-66c7-4f12-b421-087cee61324a",
+              "name": "=message",
+              "value": "={{$json.body.message}}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -288,
+        -144
+      ],
+      "id": "2b585654-7e2e-46b1-a38a-44ed1d58ca02",
+      "name": "Edit Fields1"
+    },
+    {
+      "parameters": {
+        "operation": "create",
+        "base": {
+          "__rl": true,
+          "value": "appvJ0cNGoKLK8RF0",
+          "mode": "list",
+          "cachedResultName": "AI Leads CRM",
+          "cachedResultUrl": "https://airtable.com/appvJhjybjbymng8RF0"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblff7JK7tz5CV6m2",
+          "mode": "list",
+          "cachedResultName": "Leads",
+          "cachedResultUrl": "https://airtable.com/appvJ0cNGoKLK8RF0/thjhgjhbbhjtz5CV6m2"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Lead Type": "={{$node[\"Edit Fields\"].json.lead_type}}",
+            "Name": "={{$node[\"Edit Fields\"].json.name}}",
+            "Email": "={{$node[\"Edit Fields\"].json.email}}",
+            "Message": "={{$node[\"Edit Fields\"].json.message}}",
+            "Urgency": "={{$node[\"Edit Fields\"].json.urgency}}",
+            "AI Summary": "={{$node[\"Edit Fields\"].json.summary}}",
+            "Status": "New"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Name",
+              "displayName": "Name",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Message",
+              "displayName": "Message",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Lead Type",
+              "displayName": "Lead Type",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "Hot",
+                  "value": "Hot"
+                },
+                {
+                  "name": "Warm",
+                  "value": "Warm"
+                },
+                {
+                  "name": "Cold",
+                  "value": "Cold"
+                }
+              ],
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Urgency",
+              "displayName": "Urgency",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "High",
+                  "value": "High"
+                },
+                {
+                  "name": "Medium",
+                  "value": "Medium"
+                },
+                {
+                  "name": "Low",
+                  "value": "Low"
+                }
+              ],
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "AI Summary",
+              "displayName": "AI Summary",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "New",
+                  "value": "New"
+                },
+                {
+                  "name": "Contacted",
+                  "value": "Contacted"
+                },
+                {
+                  "name": "Closed",
+                  "value": "Closed"
+                }
+              ],
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Created At",
+              "displayName": "Created At",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        1136,
+        -48
+      ],
+      "id": "c7f72c67-8eb2-43aa-85ce-e087080f259f",
+      "name": "Create a record1",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "A6EfVa0eVT1t79a1",
+          "name": "Airtable Personal Access Token account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-4O-MINI"
+        },
+        "responses": {
+          "values": [
+            {
+              "content": "=Analyze this customer message:\n\n{{$json.message}}\n\nClassify it and return ONLY valid JSON in this exact format:\n\n{\n  \"lead_type\": \"Hot/Warm/Cold\",\n  \"urgency\": \"High/Medium/Low\",\n  \"summary\": \"One sentence summary\"\n}\n\nReturn only JSON. Do not add explanations. Do not wrap in markdown.\n"
+            }
+          ]
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 2.1,
+      "position": [
+        -64,
+        -144
+      ],
+      "id": "1c080f92-ca91-4674-b163-fd5aa13e0070",
+      "name": "Message a model1",
+      "credentials": {
+        "openAiApi": {
+          "id": "munlT8BfqG2ueZGD",
+          "name": "OpenAi account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "dc806099-7b11-4d71-bdcf-e64066d20113",
+              "name": "=name",
+              "value": "={{$node[\"Edit Fields1\"].json[\"name\"]}}",
+              "type": "string"
+            },
+            {
+              "id": "0ffbb4bc-6fe6-4cef-9ef0-9c074fa54b47",
+              "name": "=email",
+              "value": "={{$node[\"Edit Fields1\"].json[\"email\"]}}",
+              "type": "string"
+            },
+            {
+              "id": "fed4c618-9ae1-4bee-9325-131bd1a918e8",
+              "name": "=message",
+              "value": "={{$node[\"Edit Fields1\"].json[\"message\"]}}",
+              "type": "string"
+            },
+            {
+              "id": "86b22542-fb65-4ab0-b626-2cd05e2fb798",
+              "name": "=lead_type",
+              "value": "={{ JSON.parse($json.output[0].content[0].text).lead_type.trim() }}",
+              "type": "string"
+            },
+            {
+              "id": "ab0ba7b5-6d5c-494d-82da-d420d1c755c4",
+              "name": "urgency",
+              "value": "={{ JSON.parse($json.output[0].content[0].text).urgency.trim() }}",
+              "type": "string"
+            },
+            {
+              "id": "64072e27-8c33-4faf-862a-c9cdd3989b52",
+              "name": "summary",
+              "value": "={{ JSON.parse($json.output[0].content[0].text).summary.trim() }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        288,
+        -144
+      ],
+      "id": "7783b307-441d-4f2f-a678-4680bf092bca",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "22360ca1-4c5a-49ef-adf7-91643db49a11",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -512,
+        -144
+      ],
+      "id": "401c7216-1884-4f4d-a33e-2ddd77dc14b1",
+      "name": "Webhook",
+      "webhookId": "22360ca1-4c5a-49ef-adf7-91643db49a11"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "75e62f9b-cebc-4975-9973-7149f2878f96",
+              "leftValue": "={{$json.fields.Urgency}}",
+              "rightValue": "High",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        1824,
+        32
+      ],
+      "id": "57f71f30-fa65-47ee-9e4e-b661a53864f6",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "chatId": "5394358663",
+        "text": "=🚨 HIGH URGENCY LEAD 🚨  Name: {{$json.fields.Name}} Email: {{$json.fields.Email}} Lead Type: {{$json.fields[\"Lead Type\"]}} Urgency: {{$json.fields.Urgency}}  Message: {{$json.fields.Message}}  Summary: {{$json.fields[\"AI Summary\"]}}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        2176,
+        16
+      ],
+      "id": "ee1a3fbe-128c-4545-a30b-edb53c450404",
+      "name": "Send a text message",
+      "webhookId": "80fd62db-a23b-4e09-b851-2e0b30ab13a6",
+      "credentials": {
+        "telegramApi": {
+          "id": "IOKZgmBi8wSxDGhF",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fromEmail": "rohandune4746@gmail.com",
+        "toEmail": "={{$json.fields.Email}}",
+        "subject": "We received your request – Our team will contact you soon",
+        "emailFormat": "text",
+        "text": "=Hi {{$json.fields.Name}},\n\nThank you for contacting us.\n\nWe received your message:\n\"{{$json.fields.Message}}\"\n\nOur team will review it and get back to you shortly.\n\nBest regards,\nYour Company",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        2176,
+        -208
+      ],
+      "id": "f92942fc-9e8c-4a09-8e38-5193637e96d3",
+      "name": "Send an Email",
+      "webhookId": "b96760c5-b4f6-4b4a-aa21-2a8348e0d68f",
+      "credentials": {
+        "smtp": {
+          "id": "uHHAWuEhrvXX04Jm",
+          "name": "SMTP account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "search",
+        "base": {
+          "__rl": true,
+          "value": "appvJ0cNGoKLK8RF0",
+          "mode": "list",
+          "cachedResultName": "AI Leads CRM",
+          "cachedResultUrl": "https://airtable.com/appvhjkhujvghgv8RF0"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblff7JK7tz5CV6m2",
+          "mode": "list",
+          "cachedResultName": "Leads",
+          "cachedResultUrl": "https://airtable.com/appvJ0cNGoKLK8RF0/tblhjhjkjhtz5CV6m2"
+        },
+        "filterByFormula": "={Email} = \"{{$json.email}}\"",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        512,
+        16
+      ],
+      "id": "259f2715-f224-4674-ae3f-a9817372e607",
+      "name": "Search records",
+      "alwaysOutputData": true,
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "A6EfVa0eVT1t79a1",
+          "name": "Airtable Personal Access Token account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "3bfbd024-aab3-4efd-8963-851b31798e09",
+              "leftValue": "={{$json.id}}",
+              "rightValue": null,
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        720,
+        16
+      ],
+      "id": "21dd0ebd-d4d0-4df5-929a-215ee9a72f8e",
+      "name": "If1"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "base": {
+          "__rl": true,
+          "value": "appvJ0cNGoKLK8RF0",
+          "mode": "list",
+          "cachedResultName": "AI Leads CRM",
+          "cachedResultUrl": "https://airtable.com/oeorkroirknKLK8RF0"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblff7JK7tz5CV6m2",
+          "mode": "list",
+          "cachedResultName": "Leads",
+          "cachedResultUrl": "https://airtable.com/appvJ0cNGoKLK8RF0/tblff7JK7tzkjxjkfljk2"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Message": "={{$json.message}}",
+            "Lead Type": "={{$json.lead_type}}",
+            "Urgency": "={{$json.urgency}}",
+            "AI Summary": "={{$json.summary}}",
+            "id": "={{$json.id}}",
+            "Status": "Re-Submitted"
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": false
+            },
+            {
+              "id": "Name",
+              "displayName": "Name",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Message",
+              "displayName": "Message",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Lead Type",
+              "displayName": "Lead Type",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "Hot",
+                  "value": "Hot"
+                },
+                {
+                  "name": "Warm",
+                  "value": "Warm"
+                },
+                {
+                  "name": "Cold",
+                  "value": "Cold"
+                }
+              ],
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Urgency",
+              "displayName": "Urgency",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "High",
+                  "value": "High"
+                },
+                {
+                  "name": "Medium",
+                  "value": "Medium"
+                },
+                {
+                  "name": "Low",
+                  "value": "Low"
+                }
+              ],
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "AI Summary",
+              "displayName": "AI Summary",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "New",
+                  "value": "New"
+                },
+                {
+                  "name": "Re-Submitted",
+                  "value": "Re-Submitted"
+                },
+                {
+                  "name": "Closed",
+                  "value": "Closed"
+                },
+                {
+                  "name": "Contacted",
+                  "value": "Contacted"
+                }
+              ],
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Created At",
+              "displayName": "Created At",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        1360,
+        -704
+      ],
+      "id": "1cbe44cd-860f-4ab0-a46b-08e9a9cfab4d",
+      "name": "Update record1",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "A6EfVa0eVT1t79a1",
+          "name": "Airtable Personal Access Token account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        1104,
+        -496
+      ],
+      "id": "1d17416c-89ca-45a6-bdff-419bc6df91ab",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "options": {
+          "includeUnpaired": true
+        }
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        1600,
+        -368
+      ],
+      "id": "3755862e-c91d-43c2-9739-1bba3568d851",
+      "name": "Merge1",
+      "alwaysOutputData": true
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "Message a model1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Message a model1": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Search records",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create a record1": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send an Email": {
+      "main": [
+        []
+      ]
+    },
+    "Search records": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Create a record1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update record1": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Update record1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge1": {
+      "main": [
+        [
+          {
+            "node": "Send an Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "1ec7abe7-9c8e-48b3-8cd8-6ed916341de4",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "55500cd9fddb6f7b345b28679d0f489c9c456bf2668d568f46340f632824b081"
+  },
+  "id": "DkhN9rE1cJ9o3dJg",
+  "tags": []
+}
