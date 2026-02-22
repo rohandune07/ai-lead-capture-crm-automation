@@ -1,0 +1,379 @@
+{
+  "name": "Follow-Up Reminder System",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes",
+              "minutesInterval": 2
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        -128,
+        0
+      ],
+      "id": "0ae09ac4-1381-4efd-9993-b2b383c3dd02",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "operation": "search",
+        "base": {
+          "__rl": true,
+          "value": "appvJ0cNGoKLK8RF0",
+          "mode": "list",
+          "cachedResultName": "AI Leads CRM",
+          "cachedResultUrl": "https://airtable.com/appvJ0cNhfghGoKLK8RF0"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblff7JK7tz5CV6m2",
+          "mode": "list",
+          "cachedResultName": "Leads",
+          "cachedResultUrl": "https://airtable.com/appvJ0cNGoKLK8RF0/tblff7JghfK7tz5CV6m2"
+        },
+        "filterByFormula": "=AND(\n  {Status} = \"New\",\n  IS_BEFORE({Created At}, DATEADD(NOW(), -1, 'days'))\n)",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        80,
+        0
+      ],
+      "id": "7d499738-800b-411e-a25a-315a61444b55",
+      "name": "Search records",
+      "alwaysOutputData": true,
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "A6EfVa0eVT1t79a1",
+          "name": "Airtable Personal Access Token account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fromEmail": "rohandune4746@gmail.com",
+        "toEmail": "={{ $json.Email }}",
+        "subject": "Reminder: We’re Ready to Help 🚀",
+        "emailFormat": "text",
+        "text": "=Hi {{ $json.Name }},\n\nWe noticed you recently requested automation assistance.\n\nWe haven’t heard back yet and would love to help you move forward.\n\nPlease reply to this email so we can assist you.\n\nBest regards,\nYour Automation Team",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        480,
+        -16
+      ],
+      "id": "4f6a031e-a381-4516-800a-174ce918e411",
+      "name": "Send an Email",
+      "webhookId": "235edc78-8c77-4f5b-a28b-a0077ab8c914",
+      "alwaysOutputData": true,
+      "credentials": {
+        "smtp": {
+          "id": "uHHAWuEhrvXX04Jm",
+          "name": "SMTP account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "base": {
+          "__rl": true,
+          "value": "appvJ0cNGoKLK8RF0",
+          "mode": "list",
+          "cachedResultName": "AI Leads CRM",
+          "cachedResultUrl": "https://airtable.com/appvJ0cNGfhfoKLK8RF0"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblff7JK7tz5CV6m2",
+          "mode": "list",
+          "cachedResultName": "Leads",
+          "cachedResultUrl": "https://airtable.com/appvJ0cNGoKLK8RF0/tblffghgff7JK7tz5CV6m2"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "id": "={{ $('If').item.json.id }}",
+            "Status": "Contacted"
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": false
+            },
+            {
+              "id": "Name",
+              "displayName": "Name",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Message",
+              "displayName": "Message",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Lead Type",
+              "displayName": "Lead Type",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "Hot",
+                  "value": "Hot"
+                },
+                {
+                  "name": "Warm",
+                  "value": "Warm"
+                },
+                {
+                  "name": "Cold",
+                  "value": "Cold"
+                }
+              ],
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Urgency",
+              "displayName": "Urgency",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "High",
+                  "value": "High"
+                },
+                {
+                  "name": "Medium",
+                  "value": "Medium"
+                },
+                {
+                  "name": "Low",
+                  "value": "Low"
+                }
+              ],
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "AI Summary",
+              "displayName": "AI Summary",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "New",
+                  "value": "New"
+                },
+                {
+                  "name": "Re-Submitted",
+                  "value": "Re-Submitted"
+                },
+                {
+                  "name": "Closed",
+                  "value": "Closed"
+                },
+                {
+                  "name": "Contacted",
+                  "value": "Contacted"
+                }
+              ],
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Created At",
+              "displayName": "Created At",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        688,
+        -16
+      ],
+      "id": "101de65f-5f5b-4220-8c1f-687ae13993fb",
+      "name": "Update record",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "A6EfVa0eVT1t79a1",
+          "name": "Airtable Personal Access Token account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "8f3fe526-e158-4e95-8791-2d549dafa6ca",
+              "leftValue": "={{$json.id}}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        256,
+        0
+      ],
+      "id": "eb07fa81-ff55-4a60-a599-ada63b1cd7e1",
+      "name": "If"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Search records",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Search records": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send an Email": {
+      "main": [
+        [
+          {
+            "node": "Update record",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update record": {
+      "main": [
+        []
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Send an Email",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "efd3e64b-a824-4f81-8acf-76f1ff24d5cb",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "55500cd9fddb6f7b345b28679d0f489c9c456bf2668d568f46340f632824b081"
+  },
+  "id": "aEqi3ctKPXob2bJw",
+  "tags": []
+}
